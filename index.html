@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ULTRON // IRIS NEURAL INTERFACE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<div class="app" id="app">
+
+  <!-- TOP HUD -->
+  <header class="top-hud">
+    <div class="hud-zone hud-left">
+      <div class="iris-mark">
+        <svg viewBox="0 0 40 40" width="26" height="26">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="var(--crimson)" stroke-width="1.4" opacity="0.8"/>
+          <circle cx="20" cy="20" r="10" fill="none" stroke="var(--cyan)" stroke-width="1" opacity="0.6"/>
+          <circle cx="20" cy="20" r="3" fill="var(--crimson)"/>
+        </svg>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="hud-zone hud-center">
+      <span class="hud-center-label">ULTRON NEURAL CORE <span class="sep">//</span> <span class="status-online">ONLINE</span></span>
+    </div>
+
+    <div class="hud-zone hud-right">
+      <div class="hud-stat"><span class="hud-stat-label">CPU</span><span class="hud-stat-val" id="hud-cpu">--%</span></div>
+      <div class="hud-stat"><span class="hud-stat-label">RAM</span><span class="hud-stat-val" id="hud-ram">--%</span></div>
+      <div class="hud-stat"><span class="hud-stat-label">BATT</span><span class="hud-stat-val" id="hud-batt">--%</span></div>
+      <div class="hud-stat hud-net"><span class="net-dot" id="hud-net-dot"></span><span class="hud-stat-val" id="hud-net">LINK</span></div>
+      <div class="hud-stat hud-time"><span class="hud-stat-val" id="hud-time">--:--:--</span><span class="hud-stat-label" id="hud-date">-- --- ----</span></div>
+    </div>
+  </header>
+
+  <div class="body-row">
+
+    <!-- LEFT COMMAND MODULE -->
+    <nav class="sidebar" id="sidebar">
+      <ul class="nav-list" id="nav-list">
+        <li data-view="home" class="nav-item active"><i data-icon="home"></i><span>Home</span></li>
+        <li data-view="chat" class="nav-item"><i data-icon="chat"></i><span>IRIS Chat</span></li>
+        <li data-view="voice" class="nav-item"><i data-icon="mic"></i><span>Voice Control</span></li>
+        <li data-view="system" class="nav-item"><i data-icon="activity"></i><span>System Status</span></li>
+        <li data-view="tasks" class="nav-item"><i data-icon="check"></i><span>Tasks</span></li>
+        <li data-view="reminders" class="nav-item"><i data-icon="bell"></i><span>Reminders</span></li>
+        <li data-view="applications" class="nav-item"><i data-icon="grid"></i><span>Applications</span></li>
+        <li data-view="settings" class="nav-item"><i data-icon="settings"></i><span>Settings</span></li>
+      </ul>
+      <div class="sidebar-foot">
+        <span class="conn-label">BACKEND</span>
+        <span class="conn-pill" id="conn-pill">DEMO MODE</span>
+      </div>
+    </nav>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- HOME VIEW -->
+      <section class="view active" id="view-home">
+        <div class="core-stage">
+          <div class="ultron-console-label"><span>U-LTRON / IRIS</span><b>NEURAL PROJECTION ONLINE</b></div>
+          <div class="core" id="iris-core">
+            <div class="holo-grid"></div>
+            <div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div><div class="ring ring-4"></div>
+            <div class="core-particles" id="core-particles"></div>
+            <div class="core-center">
+              <span class="core-title">IRIS</span>
+              <span class="core-sub">INTELLIGENT RESPONSE &amp; INTERFACE SYSTEM</span>
+              <span class="core-state" id="core-state">SYSTEM IDLE</span>
+            </div>
+            <div class="core-waveform" id="core-waveform"></div>
+            <div class="hud-reticle reticle-a">TARGET // LOCKED</div>
+            <div class="hud-reticle reticle-b">AI-07 // ACTIVE</div>
+          </div>
+          <div class="boot-log" id="boot-log"></div>
+        </div>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-cmd="open chrome"><i data-icon="chrome"></i><span>Open Chrome</span></button>
+          <button class="quick-card" data-cmd="open youtube"><i data-icon="youtube"></i><span>Open YouTube</span></button>
+          <button class="quick-card" data-cmd="open gmail"><i data-icon="mail"></i><span>Open Gmail</span></button>
+          <button class="quick-card" data-cmd="open whatsapp"><i data-icon="chat2"></i><span>Open WhatsApp</span></button>
+          <button class="quick-card" data-cmd="calculate 12 times 8"><i data-icon="calc"></i><span>Calculator</span></button>
+          <button class="quick-card" data-cmd="take a screenshot"><i data-icon="camera"></i><span>Screenshot</span></button>
+          <button class="quick-card" data-cmd="system status"><i data-icon="activity"></i><span>System Status</span></button>
+          <button class="quick-card" data-cmd="weather"><i data-icon="cloud"></i><span>Weather</span></button>
+        </div>
+
+        <div class="history-panel">
+          <div class="panel-head"><span>COMMAND HISTORY</span><button class="ghost-btn" id="clear-history">CLEAR</button></div>
+          <ul class="history-list" id="history-list"></ul>
+        </div>
+      </section>
+
+      <!-- CHAT VIEW -->
+      <section class="view" id="view-chat">
+        <div class="panel chat-panel">
+          <div class="panel-head"><span>IRIS INTELLIGENCE CORE</span><button class="ghost-btn" id="clear-chat">CLEAR</button></div>
+          <div class="chat-messages" id="chat-messages"></div>
+          <div class="chat-status" id="chat-status"></div>
+        </div>
+      </section>
+
+      <!-- VOICE VIEW -->
+      <section class="view" id="view-voice">
+        <div class="voice-stage">
+          <button class="mic-orb" id="mic-orb">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="9" y="2" width="6" height="12" rx="3"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </button>
+          <div class="mic-rings"><div></div><div></div><div></div></div>
+          <span class="mic-label" id="mic-label">PRESS TO SPEAK</span>
+          <div class="mic-waveform" id="mic-waveform"></div>
+          <div class="transcript" id="transcript">Awaiting voice input&hellip;</div>
+        </div>
+      </section>
+
+      <!-- SYSTEM STATUS VIEW -->
+      <section class="view" id="view-system">
+        <div class="gauge-grid">
+          <div class="gauge-card">
+            <svg class="gauge" viewBox="0 0 120 120"><circle class="gauge-track" cx="60" cy="60" r="52"/><circle class="gauge-fill" id="gauge-cpu" cx="60" cy="60" r="52"/></svg>
+            <div class="gauge-label"><span id="val-cpu">--%</span><small>CPU USAGE</small></div>
+          </div>
+          <div class="gauge-card">
+            <svg class="gauge" viewBox="0 0 120 120"><circle class="gauge-track" cx="60" cy="60" r="52"/><circle class="gauge-fill cyan" id="gauge-ram" cx="60" cy="60" r="52"/></svg>
+            <div class="gauge-label"><span id="val-ram">--%</span><small>RAM USAGE</small></div>
+          </div>
+          <div class="gauge-card">
+            <svg class="gauge" viewBox="0 0 120 120"><circle class="gauge-track" cx="60" cy="60" r="52"/><circle class="gauge-fill" id="gauge-batt" cx="60" cy="60" r="52"/></svg>
+            <div class="gauge-label"><span id="val-batt">--%</span><small>BATTERY</small></div>
+          </div>
+          <div class="gauge-card">
+            <svg class="gauge" viewBox="0 0 120 120"><circle class="gauge-track" cx="60" cy="60" r="52"/><circle class="gauge-fill cyan" id="gauge-net" cx="60" cy="60" r="52"/></svg>
+            <div class="gauge-label"><span id="val-net">--%</span><small>NETWORK</small></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span>SYSTEM DIAGNOSTICS</span></div>
+          <div class="diag-lines" id="diag-lines"></div>
+        </div>
+      </section>
+
+      <!-- TASKS VIEW -->
+      <section class="view" id="view-tasks">
+        <div class="panel">
+          <div class="panel-head"><span>TASKS</span></div>
+          <form class="line-form" id="task-form"><input type="text" id="task-input" placeholder="Add a task…" autocomplete="off"><button type="submit">ADD</button></form>
+          <ul class="simple-list" id="task-list"></ul>
+        </div>
+      </section>
+
+      <!-- REMINDERS VIEW -->
+      <section class="view" id="view-reminders">
+        <div class="panel">
+          <div class="panel-head"><span>REMINDERS</span></div>
+          <form class="line-form" id="reminder-form"><input type="text" id="reminder-input" placeholder="Remind me to…" autocomplete="off"><button type="submit">ADD</button></form>
+          <ul class="simple-list" id="reminder-list"></ul>
+        </div>
+      </section>
+
+      <!-- TRANSLATOR VIEW -->
+      <section class="view" id="view-translator">
+        <div class="panel">
+          <div class="panel-head"><span>TRANSLATOR</span></div>
+          <form class="line-form" id="translate-form">
+            <input type="text" id="translate-input" placeholder="Phrase to translate…" autocomplete="off">
+            <input type="text" id="translate-lang" placeholder="Target (e.g. ta, fr, es)" autocomplete="off" style="max-width:160px">
+            <button type="submit">GO</button>
+          </form>
+          <div class="result-box" id="translate-result">Result will appear here.</div>
+        </div>
+      </section>
+
+      <!-- WEATHER VIEW -->
+      <section class="view" id="view-weather">
+        <div class="panel">
+          <div class="panel-head"><span>WEATHER</span></div>
+          <form class="line-form" id="weather-form"><input type="text" id="weather-input" placeholder="City…" autocomplete="off"><button type="submit">CHECK</button></form>
+          <div class="result-box" id="weather-result">No data yet.</div>
+        </div>
+      </section>
+
+      <!-- CALCULATOR VIEW -->
+      <section class="view" id="view-calculator">
+        <div class="panel calc-panel">
+          <div class="panel-head"><span>CALCULATOR</span></div>
+          <input type="text" id="calc-display" readonly value="0">
+          <div class="calc-grid" id="calc-grid"></div>
+        </div>
+      </section>
+
+      <!-- SCREENSHOT VIEW -->
+      <section class="view" id="view-screenshot">
+        <div class="panel">
+          <div class="panel-head"><span>SCREENSHOT</span></div>
+          <p class="muted">Screenshots are captured by the IRIS backend on this machine.</p>
+          <button class="primary-btn" id="screenshot-btn">CAPTURE SCREEN</button>
+          <div class="result-box" id="screenshot-result">No screenshot requested yet.</div>
+        </div>
+      </section>
+
+      <!-- APPLICATIONS VIEW -->
+      <section class="view" id="view-applications">
+        <div class="panel">
+          <div class="panel-head"><span>APPLICATIONS</span></div>
+          <div class="quick-grid" id="app-grid">
+            <button class="quick-card" data-cmd="open notepad"><i data-icon="file"></i><span>Notepad</span></button>
+            <button class="quick-card" data-cmd="open calculator"><i data-icon="calc"></i><span>Calculator</span></button>
+            <button class="quick-card" data-cmd="open chrome"><i data-icon="chrome"></i><span>Chrome</span></button>
+            <button class="quick-card" data-cmd="open youtube"><i data-icon="youtube"></i><span>YouTube</span></button>
+            <button class="quick-card" data-cmd="open gmail"><i data-icon="mail"></i><span>Gmail</span></button>
+            <button class="quick-card" data-cmd="open whatsapp"><i data-icon="chat2"></i><span>WhatsApp</span></button>
+            <button class="quick-card" data-cmd="open instagram"><i data-icon="camera"></i><span>Instagram</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS VIEW -->
+      <section class="view" id="view-settings">
+        <div class="panel">
+          <div class="panel-head"><span>SETTINGS</span></div>
+          <label class="field-label" for="backend-url">Backend API URL</label>
+          <div class="line-form"><input type="text" id="backend-url" placeholder="http://localhost:5000"><button id="backend-save">SAVE</button></div>
+          <label class="field-label" for="backend-ws" hidden>Backend WebSocket URL (optional)</label>
+          <div class="line-form" hidden><input type="text" id="backend-ws" placeholder="ws://localhost:5000/ws"><button id="ws-connect">CONNECT</button></div>
+          <p class="muted" id="settings-status">Not connected — running in demo mode with simulated data.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- COMMAND BAR -->
+  <footer class="command-bar">
+    <button class="mic-btn" id="mic-btn-inline" title="Voice input">🎤</button>
+    <input type="text" id="command-input" placeholder="ENTER COMMAND OR ACTIVATE VOICE…" autocomplete="off" />
+    <span class="kbd-hint">⏎</span>
+    <button class="send-btn" id="send-btn">SEND</button>
+  </footer>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

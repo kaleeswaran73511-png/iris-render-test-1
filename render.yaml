@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: iris
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 90
+    healthCheckPath: /api/ping
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: OLLAMA_HOST
+        value: https://ollama.com
+      - key: OLLAMA_MODEL
+        value: gpt-oss:120b
+      - key: OLLAMA_API_KEY
+        sync: false   # you'll be asked for this in the Render dashboard
