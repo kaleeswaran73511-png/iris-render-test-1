@@ -22,12 +22,23 @@ import threading
 from collections import defaultdict, deque
 
 import requests
-from flask import Flask, jsonify, request
+from flask import Flask, abort, jsonify, request, send_from_directory
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PUBLIC_DIR = os.path.join(BASE_DIR, "public")
 
-app = Flask(__name__, static_folder=PUBLIC_DIR, static_url_path="")
+# Website files are looked up in ./public first, then next to app.py, so the
+# site works whether or not the files were uploaded inside a "public" folder.
+SITE_FILES = {"index.html", "style.css", "script.js", "config.js"}
+
+app = Flask(__name__, static_folder=None)
+
+
+def _send_site_file(name):
+    for folder in (PUBLIC_DIR, BASE_DIR):
+        if os.path.isfile(os.path.join(folder, name)):
+            return send_from_directory(folder, name)
+    abort(404)
 
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "https://ollama.com").rstrip("/")
 OLLAMA_API_KEY = os.environ.get("OLLAMA_API_KEY", "").strip()
@@ -78,7 +89,14 @@ def _allow(ip):
 
 @app.get("/")
 def index():
-    return app.send_static_file("index.html")
+    return _send_site_file("index.html")
+
+
+@app.get("/<path:name>")
+def site_file(name):
+    if name in SITE_FILES:
+        return _send_site_file(name)
+    abort(404)
 
 
 @app.get("/api/ping")
