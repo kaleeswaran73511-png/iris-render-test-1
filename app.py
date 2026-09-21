@@ -42,7 +42,7 @@ def _send_site_file(name):
     abort(404)
 
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "https://ollama.com").rstrip("/")
-OLLAMA_API_KEY = os.environ.get("OLLAMA_API_KEY", "").strip()
+OLLAMA_API_KEY = os.environ.get("6f41b1b265f240edb3630825b023bd14", "").strip()
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gpt-oss:120b")
 
 # Abuse protection: this is a public URL that spends your Ollama quota.
