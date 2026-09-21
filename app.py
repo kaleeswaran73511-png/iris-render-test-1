@@ -135,7 +135,7 @@ def chat():
 
     headers = {"Content-Type": "application/json"}
     if OLLAMA_API_KEY:
-        headers["Authorization"] = f"Bearer {OLLAMA_API_KEY}"
+        headers["Authorization"] = f"Bearer {6f41b1b265f240edb3630825b023bd14}"
 
     try:
         r = requests.post(
